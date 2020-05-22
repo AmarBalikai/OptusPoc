@@ -1,13 +1,15 @@
-package com.techm.optuspoc
+package com.techm.optuspoc.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.techm.optuspoc.R
+import com.techm.optuspoc.view.fragment.UserInformationFragment
 
 class UserInformation : AppCompatActivity() {
-    var tag:String=UserInformationFragment::class.java.name
-    var name=UserInformationFragment()
+    var tag:String= UserInformationFragment::class.java.name
+    var name= UserInformationFragment()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_information)

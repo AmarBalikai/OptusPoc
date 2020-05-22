@@ -1,10 +1,11 @@
-package com.techm.optuspoc
+package com.techm.optuspoc.view.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.techm.optuspoc.R
 
 
 class UserInformationFragment : Fragment() {
