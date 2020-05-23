@@ -1,16 +1,13 @@
-package com.techm.optuspoc
-/*
-class AdapterUserInfo {
-}*/
-
+package com.techm.optuspoc.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.techm.optuspoc.BR
+import com.techm.optuspoc.R
 import com.techm.optuspoc.databinding.ItemUserInfoBinding
-import com.techm.optuspoc.model.CompanyInformation
 import com.techm.optuspoc.model.ModelUserInformation
 
 /**
@@ -38,8 +35,8 @@ class AdapterUserInfo(
      * This method for setting list to current list from another class
      * @param countryList for to get updated list
      */
-    fun setList(countryList: ArrayList<ModelUserInformation>) {
-        this.userList = countryList
+    fun setList(userList: ArrayList<ModelUserInformation>) {
+        this.userList = userList
         notifyDataSetChanged()
     }
 
@@ -64,14 +61,11 @@ class AdapterUserInfo(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: ModelUserInformation) {
-            /*Glide.with(itemView)
-                .load(data.imageHref)
-                .placeholder(R.drawable.no_image)
-                .into(binding.imgImage)*/
+
             binding.setVariable(
                 BR.data,
                 data
-            ) //BR - generated class; BR.user -- 'user' is variable name declared in layout
+            )
             binding.data = data
             binding.executePendingBindings()
         }
