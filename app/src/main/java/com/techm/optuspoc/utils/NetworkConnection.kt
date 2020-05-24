@@ -5,7 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.techm.telstra.application.ApplicationContext.Companion.context
+
 
 /**
  * This class for internet connection
@@ -16,7 +16,7 @@ class NetworkConnection {
          * checking internet is available or not
          */
         @RequiresApi(Build.VERSION_CODES.M)
-        fun isNetworkConnected(): Boolean {
+        fun isNetworkConnected(context: Context): Boolean {
 
             val connectivityManager =
                 context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -29,7 +29,7 @@ class NetworkConnection {
                     networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
         }
 
-        fun isNetworkConnectedKitkat(): Boolean {
+        fun isNetworkConnectedKitkat(context: Context): Boolean {
             val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             return cm.isActiveNetworkMetered
         }

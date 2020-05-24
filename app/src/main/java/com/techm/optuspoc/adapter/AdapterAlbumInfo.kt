@@ -1,33 +1,37 @@
 package com.techm.optuspoc.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.techm.optuspoc.BR
 import com.techm.optuspoc.R
-import com.techm.optuspoc.databinding.ItemUserInfoBinding
-import com.techm.optuspoc.model.ModelUserInformation
+import com.techm.optuspoc.databinding.ItemPhotoInfoBinding
+import com.techm.optuspoc.model.ModelPhotosResponse
 
 /**
  * This class for handling list item
  * */
-class AdapterUserInfo(
-    var userList: ArrayList<ModelUserInformation>,
+class AdapterAlbumInfo(
+    var photoList: ArrayList<ModelPhotosResponse>,
     var context: Context,
     var listener: OnItemClickListener
-) : RecyclerView.Adapter<AdapterUserInfo.ViewHolder>() {
+) : RecyclerView.Adapter<AdapterAlbumInfo.ViewHolder>() {
 
     /**
      * this method is returning the view for each item in the list
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val binding: ItemUserInfoBinding = DataBindingUtil.inflate(
+        val binding: ItemPhotoInfoBinding = DataBindingUtil.inflate(
             LayoutInflater.from(context),
-            R.layout.item_user_info,
+            R.layout.item_photo_info,
             parent,
             false
         )
@@ -36,10 +40,10 @@ class AdapterUserInfo(
 
     /**
      * This method for setting list to current list from another class
-     * @param UserList for to get updated list
+     * @param PhotoList for to get updated list
      */
-    fun setList(userList: ArrayList<ModelUserInformation>) {
-        this.userList = userList
+    fun setList(userList: ArrayList<ModelPhotosResponse>) {
+        this.photoList = userList
         notifyDataSetChanged()
     }
 
@@ -47,31 +51,38 @@ class AdapterUserInfo(
      * This method for set data to item.
      */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(userList[position], listener)
+        holder.bind(photoList[position], listener, position)
     }
+
     /**
      * @return the size of the list.
      */
     override fun getItemCount(): Int {
-        return userList.size
+        return photoList.size
     }
+
     /**
-     * Item click listener
+     * Recycler View click listener interface
      * */
     interface OnItemClickListener {
-        fun onItemClick(item: ModelUserInformation?)
+        fun onItemClick(item: ModelPhotosResponse?, position: Int, view: ImageView)
     }
 
     /**
      * This class for creating items
      */
-    class ViewHolder(private val binding: ItemUserInfoBinding) :
+    class ViewHolder(private val binding: ItemPhotoInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        var imageView = itemView.findViewById(R.id.photo) as ImageView
 
-        fun bind(data: ModelUserInformation, listener: OnItemClickListener) {
-            itemView.setOnClickListener(View.OnClickListener {
-                listener.onItemClick(data)
-            })
+        fun bind(data: ModelPhotosResponse, listener: OnItemClickListener, position: Int) {
+            itemView.setOnClickListener {
+                listener.onItemClick(data, position, imageView)
+            }
+            Glide.with(itemView)
+                .load(data.thumbnailUrl)
+                .placeholder(R.drawable.no_image)
+                .into(binding.photo)
             binding.setVariable(
                 BR.data,
                 data

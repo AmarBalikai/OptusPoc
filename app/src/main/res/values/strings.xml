@@ -4,4 +4,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="user_info">User Info</string>
+    <string name="album_info">Album Info</string>
+    <string name="please_wait_this_may_take_a_moment">Please wait! This may take a moment.</string>
+    <string name="internet_not_connected">Device not connected to internet</string>
+    <string name="album_detail">Album Detail</string>
+    <string name="serviceFailureError">Something went wrong</string>
 </resources>

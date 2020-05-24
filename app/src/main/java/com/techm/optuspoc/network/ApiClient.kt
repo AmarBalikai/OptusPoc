@@ -9,8 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory
  * This class for creating Retrofit instance
  */
 object ApiClient {
-
-
+    /**
+     * Application base URL
+     * */
     private const val API_BASE_URL = " https://jsonplaceholder.typicode.com/"
 
     private var servicesApiInterface: APIInterface? = null
@@ -31,7 +32,6 @@ object ApiClient {
         servicesApiInterface = retrofit.create(
             APIInterface::class.java
         )
-
         return servicesApiInterface as APIInterface
     }
 
@@ -40,6 +40,4 @@ object ApiClient {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return httpLoggingInterceptor
     }
-
-
 }

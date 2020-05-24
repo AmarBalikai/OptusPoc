@@ -6,7 +6,10 @@ import com.techm.optuspoc.model.ModelUserInformation
 /**
  * This interface for handling retrofit callbacks
  */
-interface ResponseCallback {
-    fun onSuccess(data: ArrayList<ModelUserInformation>)
+interface ResponseCallback<T> {
+    /**
+     * @param T is a generic parameter
+     * */
+    fun onSuccess(data: T)
     fun onError(error: String?)
 }

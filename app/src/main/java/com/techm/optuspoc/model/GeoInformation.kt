@@ -1,3 +1,6 @@
 package com.techm.optuspoc.model
 
-class GeoInformation(var lng: String,var lat: String)
+/**
+ *This class for handling Geo information
+ */
+class GeoInformation(var lng: String, var lat: String)
