@@ -1,44 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
-    android:orientation="vertical"
-    tools:context=".view.fragment.AlbumDetailFragment">
-
-    <LinearLayout
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".view.fragment.AlbumDetailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.6"
-        android:background="@color/lightRed"
-        android:layout_marginBottom="@dimen/_20sdp"
-        android:gravity="center">
+        android:padding="@dimen/size_20">
+
+        <TextView
+            android:id="@+id/albumId"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/size_20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/photoId"
+            android:layout_width="@dimen/no_dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/size_16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/albumId" />
 
         <ImageView
             android:id="@+id/albumImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_400"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/photoId"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/photoId" />
 
-            android:contentDescription="TODO" />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_200"
+            app:cardBackgroundColor="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/albumImage">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/imageInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@{data.title!=null?data.title:`No Title`}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/size_20"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.4"
-        android:background="@color/blue"
-        android:gravity="center"
-        android:orientation="vertical">
+        </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:id="@+id/imageInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center" />
-    </LinearLayout>
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

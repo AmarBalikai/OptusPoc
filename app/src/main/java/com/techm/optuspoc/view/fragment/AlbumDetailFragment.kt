@@ -13,6 +13,7 @@ import com.techm.optuspoc.model.ModelPhotosResponse
 import com.techm.optuspoc.utils.Constant
 import com.techm.optuspoc.viewModel.ViewModelAlbumInformation
 import kotlinx.android.synthetic.main.fragment_album_detail.view.*
+
 /**
  * This class is for showing Album details
  * */
@@ -34,10 +35,9 @@ class AlbumDetailFragment : Fragment() {
             .placeholder(R.drawable.no_image)
             .into(view.albumImage)
         view.imageInfo.text = mModelPhotosResponse?.title
+        view.albumId.text = mModelPhotosResponse?.albumId
+        view.photoId.text = mModelPhotosResponse?.id
         mDataViewModel = ViewModelProvider(this).get(ViewModelAlbumInformation::class.java)
-        mDataViewModel.mPhotosList.observe(viewLifecycleOwner, Observer {
-
-        })
         return view
     }
 

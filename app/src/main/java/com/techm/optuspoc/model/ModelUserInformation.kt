@@ -17,16 +17,14 @@ class ModelUserInformation(var website: String?, var address: AddressInformation
         parcel.readString(),
         parcel.readString(),
         parcel.readString()
-    ) {
-    }
+    )
+
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        TODO("Not yet implemented")
+
     }
 
-    override fun describeContents(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun describeContents()=0
 
     companion object CREATOR : Parcelable.Creator<ModelUserInformation> {
         override fun createFromParcel(parcel: Parcel): ModelUserInformation {

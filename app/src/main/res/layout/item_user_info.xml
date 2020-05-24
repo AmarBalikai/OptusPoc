@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto">
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <import type="android.view.View" />
@@ -9,83 +10,70 @@
             type="com.techm.optuspoc.model.ModelUserInformation" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:padding="@dimen/size_20">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
-            card_view:cardCornerRadius="@dimen/_3sdp"
-            card_view:cardElevation="@dimen/_5sdp">
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/size_1"
+            app:cardElevation="@dimen/size_1"
+            app:cardMaxElevation="@dimen/size_1">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="2"
-                android:baselineAligned="false">
+                android:background="@drawable/list_gradient"
+                android:padding="@dimen/size_16">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/id"
+                    android:layout_width="@dimen/no_dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_marginRight="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:layout_weight="0.15"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:text="@{`ID: `.concat(data.id)}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_20"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvName"
-                        style="@style/TextViewNameStyle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@{data.name!=null?data.name:`No Name`}" />
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="@dimen/no_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@{data.name!=null?`Name: `.concat(data.name):`No Name`}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/id" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/tvName"
-                        android:layout_marginTop="@dimen/_2sdp"
-                        android:orientation="horizontal"
-                        android:weightSum="2">
+                <TextView
+                    android:id="@+id/tvEmail"
+                    android:layout_width="@dimen/no_dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@{`email: `.concat(data.email!=null?data.email:`No Email`)}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_20"
+                    app:layout_constraintStart_toStartOf="@id/tvName"
+                    app:layout_constraintTop_toBottomOf="@id/tvName" />
 
-                        <TextView
-                            android:id="@+id/tvEmail"
-                            style="@style/TextViewDescriptionStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:paddingEnd="@dimen/_5sdp"
-                            android:paddingRight="@dimen/_5sdp"
-                            android:text="@{data.email!=null?data.email:`No Email`}" />
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="@dimen/no_dp"
+                    android:layout_height="wrap_content"
 
-                        <TextView
-                            android:id="@+id/tvNumber"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.4" />
-                    </LinearLayout>
-                </RelativeLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="end"
-                    android:layout_weight="1.85">
-
-                    <ImageView
-                        android:id="@+id/ivArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
-                </LinearLayout>
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@{`phone: `.concat(data.phone!=null?data.phone:`No Phone`)}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/size_20"
+                    app:layout_constraintStart_toStartOf="@id/tvEmail"
+                    app:layout_constraintTop_toBottomOf="@id/tvEmail" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

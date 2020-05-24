@@ -73,7 +73,7 @@ class AdapterAlbumInfo(
      */
     class ViewHolder(private val binding: ItemPhotoInfoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var imageView = itemView.findViewById(R.id.photo) as ImageView
+        var imageView = itemView.findViewById(R.id.listImage) as ImageView
 
         fun bind(data: ModelPhotosResponse, listener: OnItemClickListener, position: Int) {
             itemView.setOnClickListener {
@@ -82,7 +82,7 @@ class AdapterAlbumInfo(
             Glide.with(itemView)
                 .load(data.thumbnailUrl)
                 .placeholder(R.drawable.no_image)
-                .into(binding.photo)
+                .into(binding.listImage)
             binding.setVariable(
                 BR.data,
                 data
