@@ -14,13 +14,13 @@ object ApiClient {
      * */
     private const val API_BASE_URL = " https://jsonplaceholder.typicode.com/"
 
-    private var servicesApiInterface: APIInterface? = null
+    private var servicesApiInterface: ApiInterface? = null
 
     /**
      * This method is initialize for retrofit object
      * @return APIInterface instance
      */
-    fun build(): APIInterface? {
+    fun build(): ApiInterface? {
         val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -30,9 +30,9 @@ object ApiClient {
 
         val retrofit: Retrofit = builder.client(httpClient.build()).build()
         servicesApiInterface = retrofit.create(
-            APIInterface::class.java
+            ApiInterface::class.java
         )
-        return servicesApiInterface as APIInterface
+        return servicesApiInterface as ApiInterface
     }
 
     private fun interceptor(): HttpLoggingInterceptor {

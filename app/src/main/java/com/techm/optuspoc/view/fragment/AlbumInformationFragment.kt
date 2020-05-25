@@ -3,7 +3,7 @@ package com.techm.optuspoc.view.fragment
 import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
-import android.transition.TransitionInflater
+import android.transition.Fade
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,14 +18,11 @@ import com.techm.optuspoc.R
 import com.techm.optuspoc.adapter.AdapterAlbumInfo
 import com.techm.optuspoc.model.ModelPhotosResponse
 import com.techm.optuspoc.model.ModelUserInformation
-import com.techm.optuspoc.utils.Constant
-import com.techm.optuspoc.utils.NetworkConnection
-import com.techm.optuspoc.utils.ResponseStatus
-import com.techm.optuspoc.utils.toast
-import com.techm.optuspoc.view.activity.UserInformation
+import com.techm.optuspoc.utils.*
 import com.techm.optuspoc.viewModel.ViewModelAlbumInformation
-import kotlinx.android.synthetic.main.fragment_user_information.view.*
+import kotlinx.android.synthetic.main.fragment_album_information.view.*
 import java.util.stream.Collectors
+
 
 /**
  * This class is for showing album list
@@ -105,21 +102,18 @@ class AlbumInformationFragment : Fragment(), AdapterAlbumInfo.OnItemClickListene
      * */
     override fun onItemClick(item: ModelPhotosResponse?, position: Int, view: ImageView) {
         val bundle = Bundle()
-        //    var transitionName = "transition$position"
+        var transitionName = "transition"
         bundle.putParcelable(Constant.albumInfo, item)
         bundle.putString(Constant.transition, ViewCompat.getTransitionName(view))
         var mAlbumDetailFragment = AlbumDetailFragment()
         mAlbumDetailFragment.arguments = bundle
-        (context as UserInformation).showFragment(
-            mAlbumDetailFragment.let { it },
-            AlbumDetailFragment::class.java.name
-        )
-        /*showFragmentWithTransition(
+
+        showFragmentWithTransition(
             this,
             mAlbumDetailFragment.let { it },
             AlbumInformationFragment::class.java.name,
             view,
-            transitionName)*/
+            transitionName)
     }
 
     private fun setupProgressDialog() {
@@ -161,7 +155,7 @@ class AlbumInformationFragment : Fragment(), AdapterAlbumInfo.OnItemClickListene
         newFragment: Fragment,
         tag: String?,
         sharedView: ImageView?,
-        sharedElementName: String?
+        sharedElementName: String
     ) {
         val fragmentManager = activity?.supportFragmentManager
         // check if the fragment is in back stack
@@ -169,24 +163,21 @@ class AlbumInformationFragment : Fragment(), AdapterAlbumInfo.OnItemClickListene
         if (fragmentPopped!!) {
             // fragment is pop from backStack
         } else {
-            current.sharedElementReturnTransition =
-                TransitionInflater.from(context).inflateTransition(R.transition.default_transition)
-            current.exitTransition = TransitionInflater.from(context)
-            //.inflateTransition(R.transition.no_transition)
-            newFragment.sharedElementEnterTransition =
-                TransitionInflater.from(context).inflateTransition(R.transition.default_transition)
-            newFragment.enterTransition = TransitionInflater.from(context)
-            //.inflateTransition(R.transition.no_transition)
-            val fragmentTransaction =
-                fragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.fragment_container, newFragment, tag)
-            fragmentTransaction.addToBackStack(tag)
+
+            newFragment.sharedElementEnterTransition = DetailsTransition()
+            newFragment.enterTransition = Fade()
+            exitTransition = Fade()
+            newFragment.sharedElementReturnTransition = DetailsTransition()
+
+            val fragmentTransaction = fragmentManager.beginTransaction()
             sharedView?.let {
                 fragmentTransaction.addSharedElement(
                     it,
                     ViewCompat.getTransitionName(it)!!
                 )
             }
+            fragmentTransaction.replace(R.id.fragment_container, newFragment, tag)
+            fragmentTransaction.addToBackStack(tag)
             fragmentTransaction.commit()
         }
     }

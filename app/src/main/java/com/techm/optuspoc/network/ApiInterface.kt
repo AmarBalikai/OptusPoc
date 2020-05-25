@@ -9,7 +9,7 @@ import retrofit2.http.GET
 /**
  * Used this class for writing all API methods
  */
-interface APIInterface {
+interface ApiInterface {
     /**
      * This method is getting for list's of objects from server
      */

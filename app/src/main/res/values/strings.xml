@@ -9,4 +9,6 @@
     <string name="internet_not_connected">Device not connected to internet</string>
     <string name="album_detail">Album Detail</string>
     <string name="serviceFailureError">Something went wrong</string>
+    <string name="album_id">Album ID : </string>
+    <string name="photo_id">"Photo ID : "</string>
 </resources>
