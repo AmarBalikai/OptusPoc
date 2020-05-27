@@ -11,8 +11,6 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import com.techm.optuspoc.R
 import com.techm.optuspoc.view.fragment.UserInformationFragment
-
-
 class UserInformation : AppCompatActivity() {
     var tag: String = UserInformationFragment::class.java.name
     var name = UserInformationFragment()

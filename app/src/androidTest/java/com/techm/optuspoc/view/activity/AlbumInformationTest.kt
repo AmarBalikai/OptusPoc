@@ -62,56 +62,6 @@ class AlbumInformationTest {
             )
         )
         textView3.check(matches(withText("Album Info")))
-        /*val imageView = onView(
-            allOf(
-                withId(R.id.listImage),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        imageView.check(matches(isDisplayed()))
-
-        val textView = onView(
-            allOf(
-                withId(R.id.imageTitle),
-                withText("accusamus beatae ad facilis cum similique qui sunt"),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
-                        0
-                    ),
-                    1
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("accusamus beatae ad facilis cum similique qui sunt")))
-
-        val textView2 = onView(
-            allOf(
-                withText("Album Info"),
-                childAtPosition(
-                    allOf(
-                        withId(R.id.action_bar),
-                        childAtPosition(
-                            withId(R.id.action_bar_container),
-                            0
-                        )
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textView2.check(matches(withText("Album Info")))
-*/
-
     }
 
     private fun childAtPosition(
