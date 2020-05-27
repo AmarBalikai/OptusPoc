@@ -48,17 +48,4 @@ class ExampleInstrumentedTest {
         onView(withId(R.id.user_list))
             .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()));
     }
-
-    /* private fun startMyFragment(): Fragment {
-         val transaction =
-             activityActivityTestRule.activity.supportFragmentManager.beginTransaction()
-         val myFragment = UserInformationFragment()
-         transaction.add(myFragment, Constant.myFrag)
-         transaction.commit()
-         return myFragment
-     }*/
 }
-
-/*private operator fun Any.invoke(i: Int, click: ViewAction?): ViewAction? {
-
-}*/

@@ -25,18 +25,11 @@ class AlbumDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //val view = inflater.inflate(R.layout.fragment_album_detail, container, false)
+
         val view = inflater.inflate(R.layout.fragment_album_detail, container, false)
         activity?.title = getString(R.string.album_detail)
         val bundle = arguments
         val mModelPhotosResponse: ModelPhotosResponse? = bundle?.getParcelable(Constant.albumInfo)
-        //var transitionName: String? = bundle?.getString(Constant.transition)
-        //view.albumImage.transitionName = transitionName
-
-        /*Glide.with(this)
-            .load(mModelPhotosResponse?.url)
-            .placeholder(R.drawable.no_image)
-            .into(view.albumImage)*/
         view.albumImage.load(mModelPhotosResponse?.url)
         {
             crossfade(true)

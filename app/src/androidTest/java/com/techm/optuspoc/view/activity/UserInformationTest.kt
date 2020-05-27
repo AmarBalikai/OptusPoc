@@ -28,7 +28,7 @@ class UserInformationTest {
     var mActivityTestRule = ActivityTestRule(UserInformation::class.java)
 
     @Test
-    fun userInformationTest3() {
+    fun userInformationTest() {
         Thread.sleep(5000)
 
         val textView = onView(
