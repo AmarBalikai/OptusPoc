@@ -9,7 +9,8 @@ import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
@@ -42,15 +43,22 @@ class ExampleInstrumentedTest {
 
     @Test
     public fun test_ViewFragment() {
+        Thread.sleep(3000)
         onView(withId(R.id.user_list)).check(matches(isDisplayed()))
-
         onView(withId(R.id.user_list))
-            .perform(
-                RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
-                    0,
-                    click()
-                )
-            );
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()));
     }
 
+    /* private fun startMyFragment(): Fragment {
+         val transaction =
+             activityActivityTestRule.activity.supportFragmentManager.beginTransaction()
+         val myFragment = UserInformationFragment()
+         transaction.add(myFragment, Constant.myFrag)
+         transaction.commit()
+         return myFragment
+     }*/
 }
+
+/*private operator fun Any.invoke(i: Int, click: ViewAction?): ViewAction? {
+
+}*/

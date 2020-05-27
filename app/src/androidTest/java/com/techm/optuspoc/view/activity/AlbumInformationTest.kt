@@ -3,8 +3,11 @@ package com.techm.optuspoc.view.activity
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
 import androidx.test.rule.ActivityTestRule
@@ -12,6 +15,7 @@ import androidx.test.runner.AndroidJUnit4
 import com.techm.optuspoc.R
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.allOf
 import org.hamcrest.TypeSafeMatcher
 import org.hamcrest.core.IsInstanceOf
@@ -21,7 +25,7 @@ import org.junit.runner.RunWith
 
 @LargeTest
 @RunWith(AndroidJUnit4::class)
-class UserInformationTest2 {
+class AlbumInformationTest {
 
     @Rule
     @JvmField
@@ -29,8 +33,38 @@ class UserInformationTest2 {
 
     @Test
     fun userInformationTest2() {
-        val viewGroup = onView(
+        Thread.sleep(5000)
+        val recyclerView = onView(
             allOf(
+                withId(R.id.user_list),
+                childAtPosition(
+                    withClassName(`is`("android.widget.FrameLayout")),
+                    0
+                )
+            )
+        )
+        recyclerView.perform(actionOnItemAtPosition<ViewHolder>(0, click()))
+        Thread.sleep(20000)
+        val textView3 = onView(
+            allOf(
+                withText("Album Info"),
+                childAtPosition(
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
+                    ),
+                    0
+                ),
+                isDisplayed()
+            )
+        )
+        textView3.check(matches(withText("Album Info")))
+        /*val imageView = onView(
+            allOf(
+                withId(R.id.listImage),
                 childAtPosition(
                     childAtPosition(
                         IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
@@ -41,29 +75,15 @@ class UserInformationTest2 {
                 isDisplayed()
             )
         )
-        viewGroup.check(matches(isDisplayed()))
+        imageView.check(matches(isDisplayed()))
 
         val textView = onView(
             allOf(
-                withId(R.id.id), withText("ID: 1"),
+                withId(R.id.imageTitle),
+                withText("accusamus beatae ad facilis cum similique qui sunt"),
                 childAtPosition(
                     childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
-                        0
-                    ),
-                    0
-                ),
-                isDisplayed()
-            )
-        )
-        textView.check(matches(withText("ID: 1")))
-
-        val textView2 = onView(
-            allOf(
-                withId(R.id.tvName), withText("Name: Leanne Graham"),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
+                        IsInstanceOf.instanceOf(android.view.ViewGroup::class.java),
                         0
                     ),
                     1
@@ -71,52 +91,27 @@ class UserInformationTest2 {
                 isDisplayed()
             )
         )
-        textView2.check(matches(withText("Name: Leanne Graham")))
+        textView.check(matches(withText("accusamus beatae ad facilis cum similique qui sunt")))
 
-        val textView3 = onView(
+        val textView2 = onView(
             allOf(
-                withId(R.id.tvEmail), withText("email: Sincere@april.biz"),
+                withText("Album Info"),
                 childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
-                        0
+                    allOf(
+                        withId(R.id.action_bar),
+                        childAtPosition(
+                            withId(R.id.action_bar_container),
+                            0
+                        )
                     ),
-                    2
+                    0
                 ),
                 isDisplayed()
             )
         )
-        textView3.check(matches(withText("email: Sincere@april.biz")))
+        textView2.check(matches(withText("Album Info")))
+*/
 
-        val textView4 = onView(
-            allOf(
-                withId(R.id.phone), withText("phone: 1-770-736-8031 x56442"),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
-                        0
-                    ),
-                    3
-                ),
-                isDisplayed()
-            )
-        )
-        textView4.check(matches(withText("phone: 1-770-736-8031 x56442")))
-
-        val textView5 = onView(
-            allOf(
-                withId(R.id.phone), withText("phone: 1-770-736-8031 x56442"),
-                childAtPosition(
-                    childAtPosition(
-                        IsInstanceOf.instanceOf(android.widget.FrameLayout::class.java),
-                        0
-                    ),
-                    3
-                ),
-                isDisplayed()
-            )
-        )
-        textView5.check(matches(withText("phone: 1-770-736-8031 x56442")))
     }
 
     private fun childAtPosition(
