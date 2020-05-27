@@ -19,7 +19,7 @@ class RepositoryViewModel() {
      * This method for getting list of objects from the server
      * @param objCallback for get response to viewmodel
      */
-    fun retrieveUserInformationData(objCallback: ResponseCallback<Any>) {
+        fun retrieveUserInformationData(objCallback: ResponseCallback<Any>) {
         val data: Call<ArrayList<ModelUserInformation>>? = ApiClient.build()?.getUserList()
         val enqueue = data?.enqueue(object : Callback<ArrayList<ModelUserInformation>> {
             override fun onResponse(

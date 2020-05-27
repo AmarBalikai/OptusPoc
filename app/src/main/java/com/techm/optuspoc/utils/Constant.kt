@@ -4,6 +4,7 @@ class Constant
 {
     companion object{
 
+        const val myFrag: String="myFrag"
         const val albumId = "Album ID"
         const val transition: String="transition"
         const val albumInfo: String="albumInfo"

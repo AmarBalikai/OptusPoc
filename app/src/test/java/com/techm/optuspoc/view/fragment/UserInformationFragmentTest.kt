@@ -10,15 +10,18 @@ import com.techm.optuspoc.repository.RepositoryViewModel
 import com.techm.optuspoc.viewModel.ViewModelUserInformation
 import org.junit.Before
 import org.junit.Test
-
+import io.reactivex.Maybe
 import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
+import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import org.mockito.Spy
+import java.net.SocketException
+import kotlin.String as String1
 
 @RunWith(JUnit4::class)
 class UserInformationFragmentTest {
@@ -40,20 +43,33 @@ class UserInformationFragmentTest {
         val application = Mockito.mock(Application::class.java)
         this.mViewModelUserInformation = ViewModelUserInformation(application)
     }
-   /* @Test
-    fun test_getEmployeeInformationAPISuccess() {
+    @Test
+    fun test_getUserInformationAPISuccess() {
         `when`(this.mApiInterface.getUserList()).thenAnswer {
-            return@thenAnswer Maybe.just(ArgumentMatchers.any<com.techm.optuspoc.repository.RepositoryViewModel>())
+            return@thenAnswer Maybe.just(ArgumentMatchers.any<RepositoryViewModel>())
         }
 
-        val observer = Mockito.mock(Observer::class.java) as Observer<ModelServerResponse>
-        this.mViewModelEmployeeInformation.mEmployeeInformationData.observeForever(observer)
+        val observer = Mockito.mock(Observer::class.java) as Observer<ArrayList<ModelUserInformation>>
+        this.mViewModelUserInformation.mUserInformationList.observeForever(observer)
 
-        this.mViewModelEmployeeInformation.getEmployeeInformation()
+        this.mViewModelUserInformation.getUserInformation()
 
-        assertNotNull(this.mViewModelEmployeeInformation.mEmployeeInformationData.value)
+        assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
-*/
+    @Test
+    fun test_getUserInformationError() {
+        `when`(this.mApiInterface.getUserList()).thenAnswer {
+            return@thenAnswer Maybe.error<SocketException>(SocketException("No network here"))
+        }
+
+        val observer = Mockito.mock(Observer::class.java) as Observer<ArrayList<ModelUserInformation>>
+        this.mViewModelUserInformation.mUserInformationList.observeForever(observer)
+
+        this.mViewModelUserInformation.getUserInformation()
+
+        assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
+        //assert(this.mViewModelUserInformation.mUserInformationList.value?.get(0).error as String)
+    }
 
 }
 

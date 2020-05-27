@@ -6,7 +6,7 @@ import android.os.Parcelable
 /**
  *This class for handling User information
  */
-class ModelUserInformation(var website: String?, var address: AddressInformation?, var phone: String?, var name: String?, var company: CompanyInformation?, var id: String?, var email: String?, var username: String?) :
+class ModelUserInformation(var website: String?, var address: AddressInformation?, var phone: String?, var name: String?, var company: CompanyInformation?, var id: String?, var email: String?, var username: String?,var error:String="") :
     Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
