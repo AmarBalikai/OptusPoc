@@ -27,7 +27,7 @@ class UserInformationFragmentTest {
 
     @Test
     fun checkTextDisplayedInDynamicallyCreatedFragment() {
-       // var activityScenario=ActivityScenario.launch(UserInformation::class.java)
+
         val fragment = UserInformationFragment()
         activityActivityTestRule.activity.supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, fragment).commit()

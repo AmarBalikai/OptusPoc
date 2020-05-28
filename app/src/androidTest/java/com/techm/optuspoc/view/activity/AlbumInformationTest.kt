@@ -32,7 +32,7 @@ class AlbumInformationTest {
     var mActivityTestRule = ActivityTestRule(UserInformation::class.java)
 
     @Test
-    fun userInformationTest2() {
+    fun userInformationTest() {
         Thread.sleep(5000)
         val recyclerView = onView(
             allOf(
