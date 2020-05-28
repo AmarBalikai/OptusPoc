@@ -53,7 +53,7 @@ class UserInformationFragmentTest {
         this.mViewModelUserInformation.mUserInformationList.observeForever(observer)
 
         this.mViewModelUserInformation.getUserInformation()
-
+        Thread.sleep(10000)
         assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
     @Test
@@ -66,7 +66,7 @@ class UserInformationFragmentTest {
         this.mViewModelUserInformation.mUserInformationList.observeForever(observer)
 
         this.mViewModelUserInformation.getUserInformation()
-
+        Thread.sleep(10000)
         assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
 

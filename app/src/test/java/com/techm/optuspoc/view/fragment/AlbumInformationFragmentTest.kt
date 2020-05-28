@@ -49,7 +49,7 @@ class AlbumInformationFragmentTest
         this.mViewModelAlbumInformation.mPhotosList.observeForever(observer)
 
         this.mViewModelAlbumInformation.getPhotosList("1")
-
+        Thread.sleep(10000)
         assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
     }
     @Test
@@ -62,7 +62,7 @@ class AlbumInformationFragmentTest
         this.mViewModelAlbumInformation.mPhotosList.observeForever(observer)
 
         this.mViewModelAlbumInformation.getPhotosList("1")
-
+        Thread.sleep(10000)
         assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
 
     }
