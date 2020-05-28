@@ -2,9 +2,11 @@ package com.techm.optuspoc.view.activity
 
 
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -32,4 +34,28 @@ class UserInformationFragmentTest {
         activityActivityTestRule.activity.supportFragmentManager.beginTransaction()
             .add(R.id.fragment_container, fragment).commit()
     }
+    /**test for checking scrolling functionality**/
+    @Test
+    fun listScrollToLastAndFirst() {
+        try {
+            Thread.sleep(3000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        val recyclerview: RecyclerView =
+            activityActivityTestRule.activity.findViewById<RecyclerView>(R.id.user_list)
+        val count = recyclerview.adapter?.itemCount
+        onView(withId(R.id.user_list)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                count!!.toInt()
+            )
+        )
+
+        onView(withId(R.id.user_list)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                0
+            )
+        )
+    }
+
 }

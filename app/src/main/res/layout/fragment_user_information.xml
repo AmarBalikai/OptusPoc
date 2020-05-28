@@ -7,6 +7,7 @@
     tools:context=".view.fragment.UserInformationFragment">
 
     <TextView
+        android:id="@+id/userInformation"
         android:text="@string/user_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

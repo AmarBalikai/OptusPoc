@@ -3,10 +3,12 @@ package com.techm.optuspoc.view.activity
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
@@ -64,6 +66,29 @@ class AlbumInformationTest {
         textView3.check(matches(withText("Album Info")))
     }
 
+    /**test for checking scrolling functionality**/
+    @Test
+    fun listScrollToLastAndFirst() {
+        try {
+            Thread.sleep(3000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+        val recyclerview: RecyclerView =
+            mActivityTestRule.activity.findViewById<RecyclerView>(R.id.user_list)
+        val count = recyclerview.adapter?.itemCount
+        onView(withId(R.id.user_list)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                count!!.toInt()
+            )
+        )
+
+        onView(withId(R.id.user_list)).perform(
+            RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(
+                0
+            )
+        )
+    }
     private fun childAtPosition(
         parentMatcher: Matcher<View>, position: Int
     ): Matcher<View> {
@@ -81,4 +106,5 @@ class AlbumInformationTest {
             }
         }
     }
+
 }
