@@ -21,6 +21,11 @@ class ModelUserInformation(var website: String?="", var address: AddressInformat
 
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
+        dest?.writeString(website)
+        dest?.writeString(phone)
+        dest?.writeString(id)
+        dest?.writeString(email)
+        dest?.writeString(username)
 
     }
 

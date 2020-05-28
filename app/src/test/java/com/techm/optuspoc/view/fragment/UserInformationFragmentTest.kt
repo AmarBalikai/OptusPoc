@@ -54,7 +54,7 @@ class UserInformationFragmentTest {
 
         this.mViewModelUserInformation.getUserInformation()
 
-        //assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
+        assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
     @Test
     fun test_getUserInformationError() {
@@ -67,7 +67,7 @@ class UserInformationFragmentTest {
 
         this.mViewModelUserInformation.getUserInformation()
 
-        //assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
+        assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
 
 }

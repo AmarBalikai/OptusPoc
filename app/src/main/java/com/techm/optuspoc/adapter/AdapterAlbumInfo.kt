@@ -9,14 +9,14 @@ import android.widget.ImageView
 import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
 import com.bumptech.glide.Glide
 import com.techm.optuspoc.BR
 import com.techm.optuspoc.R
 import com.techm.optuspoc.databinding.ItemPhotoInfoBinding
 import com.techm.optuspoc.model.ModelPhotosResponse
 import com.techm.optuspoc.utils.Constant
-import kotlinx.android.synthetic.main.item_photo_info.view.*
+import com.techm.optuspoc.utils.loadImage
+
 
 /**
  * This class for handling list item
@@ -83,16 +83,8 @@ class AdapterAlbumInfo(
             itemView.setOnClickListener {
                 listener.onItemClick(data, position, imageView)
             }
-            binding.listImage.load(data.thumbnailUrl)
-            {
-                crossfade(true)
-                placeholder(R.drawable.no_image)
-                error(R.drawable.no_image)
-            }
-            /*Glide.with(itemView)
-                .load(data.thumbnailUrl)
-                .placeholder(R.drawable.no_image)
-                .into(binding.listImage)*/
+            binding.listImage.loadImage(data.thumbnailUrl.toString())
+
             binding.setVariable(
                 BR.data,
                 data

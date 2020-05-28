@@ -41,29 +41,29 @@ class AlbumInformationFragmentTest
     }
     @Test
     fun test_getAlbumInformationAPISuccess() {
-        Mockito.`when`(this.mApiInterface.getPhotosList()).thenAnswer {
+        Mockito.`when`(this.mApiInterface.getPhotosList("1")).thenAnswer {
             return@thenAnswer Maybe.just(ArgumentMatchers.any<RepositoryViewModel>())
         }
 
         val observer = Mockito.mock(Observer::class.java) as Observer<ArrayList<ModelPhotosResponse>>
         this.mViewModelAlbumInformation.mPhotosList.observeForever(observer)
 
-        this.mViewModelAlbumInformation.getPhotosList()
+        this.mViewModelAlbumInformation.getPhotosList("1")
 
-       // assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
+        assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
     }
     @Test
     fun test_getAlbumInformationError() {
-        Mockito.`when`(this.mApiInterface.getPhotosList()).thenAnswer {
+        Mockito.`when`(this.mApiInterface.getPhotosList("1")).thenAnswer {
             return@thenAnswer Maybe.error<SocketException>(SocketException("No network here"))
         }
 
         val observer = Mockito.mock(Observer::class.java) as Observer<ArrayList<ModelPhotosResponse>>
         this.mViewModelAlbumInformation.mPhotosList.observeForever(observer)
 
-        this.mViewModelAlbumInformation.getPhotosList()
+        this.mViewModelAlbumInformation.getPhotosList("1")
 
-        //assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
+        assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
 
     }
 

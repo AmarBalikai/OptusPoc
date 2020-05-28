@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+
+        <variable
+            name="imageInfo"
+            type="com.techm.optuspoc.model.ModelPhotosResponse" />
+
+    </data>
+
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".view.fragment.AlbumDetailFragment"
     >
@@ -18,8 +28,9 @@
             android:layout_width="@dimen/no_dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/black"
             android:textSize="@dimen/size_20"
+            android:text="@{@string/album_id.concat(imageInfo.albumId)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,6 +41,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textSize="@dimen/size_16"
+            android:textColor="@color/black"
+            android:text="@{@string/photo_id.concat(imageInfo.id)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/albumId" />
@@ -39,14 +52,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_300"
             android:scaleType="fitCenter"
-
+            app:imageUrl="@{imageInfo.url}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/photoId"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/photoId" />
 
         <androidx.cardview.widget.CardView
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/size_15"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_200"
             app:cardBackgroundColor="@color/blue"
@@ -56,12 +69,12 @@
             app:layout_constraintTop_toBottomOf="@id/albumImage">
 
             <TextView
-                android:id="@+id/imageInfo"
+                android:id="@+id/imageInfoo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="@{data.title!=null?data.title:`No Title`}"
+                android:text="@{imageInfo.title}"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_20"
                 android:textStyle="bold" />
@@ -70,3 +83,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
+</layout>

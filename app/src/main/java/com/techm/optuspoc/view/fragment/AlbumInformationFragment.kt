@@ -20,7 +20,9 @@ import com.techm.optuspoc.model.ModelPhotosResponse
 import com.techm.optuspoc.model.ModelUserInformation
 import com.techm.optuspoc.utils.*
 import com.techm.optuspoc.viewModel.ViewModelAlbumInformation
+import kotlinx.android.synthetic.main.fragment_album_information.*
 import kotlinx.android.synthetic.main.fragment_album_information.view.*
+import kotlinx.android.synthetic.main.fragment_album_information.view.albumId
 import java.util.stream.Collectors
 
 
@@ -44,7 +46,7 @@ class AlbumInformationFragment : Fragment(), AdapterAlbumInfo.OnItemClickListene
         var view = inflater.inflate(R.layout.fragment_album_information, container, false)
         mDataViewModel = ViewModelProvider(this).get(ViewModelAlbumInformation::class.java)
         setupProgressDialog()
-        activity?.title = getString(R.string.album_info)
+
         var bundle = arguments
         var mModelUserInformation: ModelUserInformation? = bundle?.getParcelable(Constant.userInfo)
 
@@ -54,6 +56,7 @@ class AlbumInformationFragment : Fragment(), AdapterAlbumInfo.OnItemClickListene
         mAdapter = context?.let { AdapterAlbumInfo(ArrayList(), it, this) }!!
         view.user_list.layoutManager = LinearLayoutManager(context)
         view.user_list.adapter = mAdapter
+        view.albumId.text=getString(R.string.album_id)+": "+mModelUserInformation?.id
         if (activity?.let { NetworkConnection.isNetworkConnected(it) }!!) {
             showProgressDialog()
             mModelUserInformation?.id?.let { mDataViewModel.getPhotosList(it) }

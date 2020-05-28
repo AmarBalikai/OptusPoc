@@ -43,7 +43,6 @@ class UserInformationFragment : Fragment(), AdapterUserInfo.OnItemClickListener 
         // Inflate the layout for this fragment
         var view = inflater.inflate(R.layout.fragment_user_information, container, false)
         setupProgressDialog()
-        activity?.title = getString(R.string.user_info)
         mDataViewModel = ViewModelProvider(this).get(ViewModelUserInformation::class.java)
         if (activity?.let { isNetworkConnected(it) }!!) {
             showProgressDialog()
