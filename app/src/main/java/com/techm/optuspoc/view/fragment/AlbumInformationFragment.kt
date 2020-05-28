@@ -56,7 +56,7 @@ class AlbumInformationFragment : Fragment(), AdapterAlbumInfo.OnItemClickListene
         mAdapter = context?.let { AdapterAlbumInfo(ArrayList(), it, this) }!!
         view.user_list.layoutManager = LinearLayoutManager(context)
         view.user_list.adapter = mAdapter
-        view.albumId.text=getString(R.string.album_id)+": "+mModelUserInformation?.id
+        view.albumId.text=getString(R.string.album_id)+mModelUserInformation?.id
         if (activity?.let { NetworkConnection.isNetworkConnected(it) }!!) {
             showProgressDialog()
             mModelUserInformation?.id?.let { mDataViewModel.getPhotosList(it) }
