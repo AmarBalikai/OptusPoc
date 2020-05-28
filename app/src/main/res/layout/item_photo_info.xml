@@ -35,9 +35,11 @@
                 android:id="@+id/imageTitle"
                 android:layout_width="@dimen/no_dp"
                 android:layout_height="wrap_content"
-                android:text="@{data.title!=null?data.title:`No Title`}"
+                android:text="hiiiiiii"
+                android:paddingLeft="@dimen/size_15"
                 android:textColor="@color/white"
                 android:textSize="@dimen/size_20"
+
                 app:layout_constraintBottom_toBottomOf="@id/listImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/listImage"
@@ -48,7 +50,7 @@
                 android:layout_width="@dimen/size_150"
                 android:layout_height="@dimen/size_150"
                 android:scaleType="fitCenter"
-                android:layout_marginRight="@dimen/size_15"
+
                 app:layout_constraintStart_toEndOf="@id/imageTitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
