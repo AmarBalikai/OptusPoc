@@ -52,6 +52,10 @@ class AlbumInformationFragmentTest
         Thread.sleep(10000)
         assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
     }
+
+    /**
+     * This test should be fail because we will get success response from API
+     * */
     @Test
     fun test_getAlbumInformationError() {
         Mockito.`when`(this.mApiInterface.getPhotosList("1")).thenAnswer {
@@ -63,7 +67,7 @@ class AlbumInformationFragmentTest
 
         this.mViewModelAlbumInformation.getPhotosList("1")
         Thread.sleep(10000)
-        assertNotNull(this.mViewModelAlbumInformation.mPhotosList.value)
+        assertNull(this.mViewModelAlbumInformation.mPhotosList.value)
 
     }
 

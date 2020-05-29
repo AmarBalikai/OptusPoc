@@ -56,6 +56,9 @@ class UserInformationFragmentTest {
         Thread.sleep(10000)
         assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
+    /**
+     * This test should be fail because we will get success response from API
+     * */
     @Test
     fun test_getUserInformationError() {
         `when`(this.mApiInterface.getUserList()).thenAnswer {
@@ -67,7 +70,7 @@ class UserInformationFragmentTest {
 
         this.mViewModelUserInformation.getUserInformation()
         Thread.sleep(10000)
-        assertNotNull(this.mViewModelUserInformation.mUserInformationList.value)
+        assertNull(this.mViewModelUserInformation.mUserInformationList.value)
     }
 
 }
